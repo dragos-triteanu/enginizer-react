@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 
-class SomeComponent extends Component {
-
+export class SomeComponent extends Component {
 
   render() {
     return (
         <div className="someComponent">
           <div className='someClass'>
-            Lalaband {this.props.name}
+            <p onClick={this.props.click}>Name attribute: {this.props.name}</p>
+            <p>Content (children): {this.props.children}</p>
           </div>
         </div>
-       //The same as
-      //React.createElement('div',{className: 'bonzoi'}, 'Lalaband');
+        //The same as
+        //React.createElement('div',{className: 'bonzoi'}, 'Lalaband');
     );
   }
 }
