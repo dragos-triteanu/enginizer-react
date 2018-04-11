@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import SomeComponent from "./Components/SomeComponent/SomeComponent";
 import {Input} from "./Components/Input/Input";
+import Card from "./Components/Card/Card";
 
 class App extends Component {
   state = {
@@ -17,17 +17,21 @@ class App extends Component {
         <div className="App">
           <h1 className="centered">React starter</h1>
           <h2>Basic component and passing props</h2>
-          <SomeComponent name={this.state.components[0].name}
-                         click={this.renameHandler.bind(this, 3)}>
-            Component content
-          </SomeComponent>
+          <Card title="Some title"
+                name={this.state.components[0].name}
+                click={this.renameHandler.bind(this, 3)}>
+            <div className="card-content">
+              Random content: {this.state.components[0].name}
+
+            </div>
+            <div className="card-footer">
+              <button onClick={this.renameHandler.bind(this, 5)}>Card footer
+              </button>
+            </div>
+          </Card>
 
           <Input change={this.inputChange}
-                 initVal={this.state.components[0].name}/>
-
-          <button onClick={this.renameHandler.bind(this, 5)}>Click me, mortal!
-          </button>
-
+                 initVal="zero"/>
         </div>
     );
   }
