@@ -3,6 +3,17 @@ import React, {Component} from 'react';
 import './Card.css';
 
 export class SomeComponent extends Component {
+  state = {
+    showContent: true
+  };
+
+  componentDidMount() {
+    this.props.onRef(this)
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
 
   render() {
 
@@ -19,13 +30,16 @@ export class SomeComponent extends Component {
       }
     };
 
+    let subtitle = <p>{this.props.subtitle}</p>;
+
     return (
         <div className="SomeComponent">
           <header style={styles.headerStyle}>
             <h1>{this.props.title}</h1>
+            {this.state.showContent ? subtitle : null}
           </header>
-          <content style={styles.contentStyle}>
-            {this.props.children[0]}
+          <content
+              style={styles.contentStyle}> {this.props.children[0]}
           </content>
           <footer>
             {this.props.children[1]}
@@ -34,7 +48,12 @@ export class SomeComponent extends Component {
 
         //The same as
         //React.createElement('div',{className: 'bonzoi'}, 'Lalaband');
+
     );
+  }
+
+  toggleSubtitleVisibility() {
+    this.setState({showContent: !this.state.showContent});
   }
 }
 

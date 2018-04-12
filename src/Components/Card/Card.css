@@ -16,6 +16,10 @@ content div {
   flex: 1;
 }
 
+h1 {
+  margin: 0;
+}
+
 footer {
   height: 50px;
   width: 100%;

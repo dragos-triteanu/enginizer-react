@@ -17,8 +17,10 @@ class App extends Component {
         <div className="App">
           <h1 className="centered">React starter</h1>
           <h2>Basic component and passing props</h2>
-          <Card title="Some title"
+          <Card onRef={ref => (this.card = ref)}
+                title="Some title"
                 name={this.state.components[0].name}
+                subtitle="Subtitle"
                 click={this.renameHandler.bind(this, 3)}>
             <div className="card-content">
               Random content: {this.state.components[0].name}
@@ -26,6 +28,9 @@ class App extends Component {
             </div>
             <div className="card-footer">
               <button onClick={this.renameHandler.bind(this, 5)}>Card footer
+              </button>
+              <button onClick={this.handleChildvisibility}>Show
+                subtitle
               </button>
             </div>
           </Card>
@@ -56,6 +61,11 @@ class App extends Component {
         {name: 'z'}
       ]
     })
+  };
+
+  handleChildvisibility = () => {
+    debugger
+    this.card.toggleSubtitleVisibility();
   }
 
 }
