@@ -8,6 +8,8 @@ export class Input extends Component {
           <input type='text'
                  onChange={this.props.change}
                  value={this.props.initVal}/>
+
+          <button onClick={this.props.delete}>X</button>
         </div>
     )
   }
