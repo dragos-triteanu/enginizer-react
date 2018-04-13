@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
 import './Card.css';
+import Radium from "radium";
 
-export class SomeComponent extends Component {
+class SomeComponent extends Component {
   state = {
     showContent: true
   };
@@ -57,4 +58,4 @@ export class SomeComponent extends Component {
   }
 }
 
-export default SomeComponent;
+export default Radium(SomeComponent);

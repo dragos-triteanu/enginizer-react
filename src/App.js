@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Input} from "./Components/Input/Input";
 import Card from "./Components/Card/Card";
-import Radium from "radium";
+import Radium, {StyleRoot} from "radium";
+import InputComponent from "./Components/Input/Input";
 
 class App extends Component {
   state = {
@@ -15,51 +15,58 @@ class App extends Component {
       backgroundColor: 'green',
       ':hover': {
         backgroundColor: 'yellow'
+      },
+      '@media (max-width: 1000px)': {
+        display: 'none'
       }
     }
   };
 
   render() {
     return (
-        <div className="App">
-          <div className="App-header">
-            <h1 className="centered">React playground</h1>
-          </div>
-          <div className="App-content">
-            <Card onRef={ref => (this.card = ref)}
-                  title="Some title"
-                  name={this.state.components[0].name}
-                  subtitle="Subtitle"
-                  click={this.renameHandler.bind(this, 3)}>
-              <div className="card-content">
-                Random content: {this.state.components[0].name}
+        <StyleRoot>
+          <div className="App">
+            <div className="App-header">
+              <h1 className="centered">React playground</h1>
+            </div>
+            <div className="App-content">
+              <Card onRef={ref => (this.card = ref)}
+                    title="Some title"
+                    name={this.state.components[0].name}
+                    subtitle="Subtitle"
+                    click={this.renameHandler.bind(this, 3)}>
+                <div className="card-content">
+                  Random content: {this.state.components[0].name}
 
-                <div className="inputSwarm">
-                  <h2>Illustration of list rendering</h2>
-                  {
-                    this.state.components.map((component, index) => {
-                      return <Input key={component.id}
-                                    delete={this.deletePersonHandler.bind(this,
-                                        component.id)}
-                                    change={(e) => this.inputChange(e,
-                                        component.id)}
-                                    initVal={component.name}/>
-                    })
-                  }
+                  <div className="inputSwarm">
+                    <h2>Illustration of list rendering</h2>
+                    {
+                      this.state.components.map((component, index) => {
+                        return <InputComponent key={component.id}
+                                               delete={() =>
+                                                   this.deletePersonHandler(
+                                                       component.id)}
+                                               change={(e) => this.inputChange(
+                                                   e,
+                                                   component.id)}
+                                               initVal={component.name}/>
+                      })
+                    }
+                  </div>
+
                 </div>
-
-              </div>
-              <div className="card-footer">
-                <button onClick={this.renameHandler.bind(this, 5)}>Card footer
-                </button>
-                <button onClick={this.handleChildvisibility}
-                        style={this.state.style}>Show
-                  subtitle
-                </button>
-              </div>
-            </Card>
+                <div className="card-footer">
+                  <button onClick={this.renameHandler.bind(this, 5)}>Card footer
+                  </button>
+                  <button onClick={this.handleChildvisibility}
+                          style={this.state.style}>Show
+                    subtitle
+                  </button>
+                </div>
+              </Card>
+            </div>
           </div>
-        </div>
+        </StyleRoot>
     );
   }
 

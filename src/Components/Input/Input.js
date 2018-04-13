@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import Radium from "radium";
 
-export class Input extends Component {
+class InputComponent extends Component {
 
   render() {
     return (
@@ -16,4 +17,4 @@ export class Input extends Component {
 
 }
 
-export default Input;
+export default Radium(InputComponent);
