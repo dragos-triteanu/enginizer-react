@@ -26,10 +26,10 @@ class App extends Component {
     return (
         <StyleRoot>
           <div className="App">
-            <div className="App-header">
+            <div className="AppHeader">
               <h1 className="centered">React playground</h1>
             </div>
-            <div className="App-content">
+            <div className="AppContent">
               <Card onRef={ref => (this.card = ref)}
                     title="Some title"
                     name={this.state.components[0].name}

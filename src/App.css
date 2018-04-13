@@ -9,11 +9,11 @@
   flex-direction: column;
 }
 
-.App-header{
+.AppHeader{
   height: 100px;
 }
 
-.App-content{
+.AppContent{
   flex: 1;
   display: flex;
   flex-direction: column;
