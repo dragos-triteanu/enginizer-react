@@ -34,7 +34,8 @@ class SomeComponent extends Component {
     let subtitle = <p>{this.props.subtitle}</p>;
 
     return (
-        <div className="SomeComponent">
+        <div className="SomeComponent"
+             onClick={this.props.click}>
           <header style={styles.headerStyle}>
             <h1>{this.props.title}</h1>
             {this.state.showContent ? subtitle : null}
@@ -46,10 +47,6 @@ class SomeComponent extends Component {
             {this.props.children[1]}
           </footer>
         </div>
-
-        //The same as
-        //React.createElement('div',{className: 'bonzoi'}, 'Lalaband');
-
     );
   }
 
