@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Radium, {StyleRoot} from "radium";
-import InputComponent from "../Components/Input/Input";
-import CardList from "../Components/CardList/CardList";
+import InputComponent from "../components/Input/Input";
+import CardList from "../components/CardList/CardList";
 
 class App extends Component {
   state = {
