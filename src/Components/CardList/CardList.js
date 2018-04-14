@@ -33,19 +33,19 @@ class CardList extends Component {
     );
   }
 
-  createCard(card) {
+  createCard(card, index) {
     let cardComponent =
         (
-            <Card key={card.id}
+            <Card key={index}
                   onRef={ref => (this.state.cards.push(ref))}
                   title={card.title}
                   subtitle={card.subtitle}
-                  click={this.handleChildClick}>
+                  click={(e) => this.handleChildClick(e, card.id)}>
               <div className="card-content">
                 Random content
               </div>
               <div className="card-footer">
-                <button onClick={(e) => this.handleChildVisibility(e, card.id)}
+                <button onClick={(e) => this.handleChildVisibility(e, index)}
                         style={this.state.childStyle}>Show
                   subtitle
                 </button>
@@ -57,7 +57,7 @@ class CardList extends Component {
   }
 
   handleChildVisibility = (event, id) => {
-    this.state.cards[id - 1].toggleSubtitleVisibility();
+    this.state.cards[id].toggleSubtitleVisibility();
   };
 
   handleChildClick(event) {

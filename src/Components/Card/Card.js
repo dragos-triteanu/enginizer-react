@@ -34,13 +34,13 @@ class SomeComponent extends Component {
     let subtitle = <p>{this.props.subtitle}</p>;
 
     return (
-        <div className="SomeComponent"
-             onClick={this.props.click}>
+        <div className="SomeComponent">
           <header style={styles.headerStyle}>
             <h1>{this.props.title}</h1>
             {this.state.showContent ? subtitle : null}
           </header>
           <content
+              onClick={this.props.click}
               style={styles.contentStyle}> {this.props.children[0]}
           </content>
           <footer>
