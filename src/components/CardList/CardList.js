@@ -42,7 +42,7 @@ class CardList extends Component {
                   subtitle={card.subtitle}
                   click={(e) => this.handleChildClick(e, card.id)}>
               <div className="card-content">
-                Random content
+                <p>Random content</p>
               </div>
               <div className="card-footer">
                 <button onClick={(e) => this.handleChildVisibility(e, index)}
@@ -66,6 +66,8 @@ class CardList extends Component {
 
 }
 
-CardList.propTypes = {};
+CardList.propTypes = {
+  cards: PropTypes.array
+};
 
 export default Radium(CardList);

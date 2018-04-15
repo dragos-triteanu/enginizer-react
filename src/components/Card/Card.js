@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import './Card.css';
 import Radium from "radium";
+import * as PropTypes from "prop-types";
 
 class CardComponent extends Component {
   state = {
@@ -15,6 +16,8 @@ class CardComponent extends Component {
   constructor(props) {
     console.log('[CardComponent] :: constructor');
     super(props);
+    // In react 16.3, the new reference API was introduced for creating and assigning references
+    this.headerElement = React.createRef();
   }
 
   /**
@@ -40,7 +43,7 @@ class CardComponent extends Component {
     return (
         <div className="SomeComponent">
           <header style={styles.headerStyle}>
-            <h1>{this.props.title}</h1>
+            <h1 ref={this.headerElement}>{this.props.title}</h1>
             {this.state.showContent ? subtitle : null}
           </header>
           <content
@@ -112,6 +115,7 @@ class CardComponent extends Component {
     // The call to set state is performed async by react, so it's safer to pass
     // a callback to the set state, rather than modifying the state inline.
     // It saves kittens!
+    this.headerElement.current.style = {display: 'none'};
     this.setState((previousState, props) => {
       return {
         showContent: !this.state.showContent,
@@ -120,5 +124,17 @@ class CardComponent extends Component {
     });
   }
 }
+
+/**
+ *  Defines the allowed property types and also provides autocomplete.
+ *  This is the same as angular's '@Input() smth: string'
+ */
+CardComponent.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  click: PropTypes.func,
+  // this dallows for a single child to be passed to the component
+  //children: PropTypes.element.isRequired
+};
 
 export default Radium(CardComponent);
