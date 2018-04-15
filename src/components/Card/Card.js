@@ -5,7 +5,8 @@ import Radium from "radium";
 
 class CardComponent extends Component {
   state = {
-    showContent: true
+    showContent: true,
+    toggleClicked: 0
   };
 
   /**
@@ -103,12 +104,20 @@ class CardComponent extends Component {
    *  UPDATE #4:  Executed after getSnapshotBeforeUpdate.
    *  Called after component has been updated
    */
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log('[UPDATE CardComponent] UPDATE :: componentDidUpdate');
   }
 
   toggleSubtitleVisibility() {
-    this.setState({showContent: !this.state.showContent});
+    // The call to set state is performed async by react, so it's safer to pass
+    // a callback to the set state, rather than modifying the state inline.
+    // It saves kittens!
+    this.setState((previousState, props) => {
+      return {
+        showContent: !this.state.showContent,
+        toggleClicked: previousState.toggleClicked + 1
+      }
+    });
   }
 }
 
