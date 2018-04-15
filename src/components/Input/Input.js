@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Radium from "radium";
+import wrapComponent from "../../utils/WrapComponent";
 
 class InputComponent extends Component {
 
@@ -14,7 +14,6 @@ class InputComponent extends Component {
         </div>
     )
   }
-
 }
 
-export default Radium(InputComponent);
+export default wrapComponent(InputComponent);
