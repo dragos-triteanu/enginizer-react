@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './Card.css';
 import Radium from "radium";
 import * as PropTypes from "prop-types";
+import {AuthContext} from "../../containers/App";
 
 class CardComponent extends Component {
   state = {
@@ -49,6 +50,9 @@ class CardComponent extends Component {
           <content
               onClick={this.props.click}
               style={styles.contentStyle}> {this.props.children[0]}
+            <AuthContext.Consumer>
+              {auth => auth ? <p>passed state</p> : null}
+            </AuthContext.Consumer>
           </content>
           <footer>
             {this.props.children[1]}
