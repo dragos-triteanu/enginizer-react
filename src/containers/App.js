@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Radium, {StyleRoot} from "radium";
-import InputComponent from "../components/Input/Input";
-import CardList from "../components/CardList/CardList";
+import CardList from "./CardList/CardList";
 
 export const AuthContext = React.createContext(false);
 
@@ -44,7 +43,7 @@ class App extends Component {
             </div>
             <div className="AppContent">
               <AuthContext.Provider value={this.state.authenticated}>
-                <CardList cards={this.state.cards}/>
+                <CardList/>
               </AuthContext.Provider>
             </div>
           </div>

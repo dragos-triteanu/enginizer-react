@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Card from "../Card/Card";
+import Card from "../../components/Card/Card";
 import Radium from "radium";
+import {connect} from "react-redux";
 
 class CardList extends Component {
 
@@ -11,12 +12,12 @@ class CardList extends Component {
     },
     childStyle: {
       backgroundColor: 'green',
-      ':hover': {
-        backgroundColor: 'yellow'
-      },
-      '@media (max-width: 1000px)': {
-        display: 'none'
-      }
+      // ':hover': {
+      //   backgroundColor: 'yellow'
+      // },
+      // '@media (max-width: 1000px)': {
+      //   display: 'none'
+      // }
     },
     cards: []
   };
@@ -66,8 +67,14 @@ class CardList extends Component {
 
 }
 
+function mapPropsToState(state) {
+  return {
+    cards: state.cards
+  }
+}
+
 CardList.propTypes = {
   cards: PropTypes.array
 };
 
-export default Radium(CardList);
+export default connect(mapPropsToState)(CardList)
