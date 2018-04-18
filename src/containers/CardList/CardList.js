@@ -12,12 +12,12 @@ class CardList extends Component {
     },
     childStyle: {
       backgroundColor: 'green',
-      // ':hover': {
-      //   backgroundColor: 'yellow'
-      // },
-      // '@media (max-width: 1000px)': {
-      //   display: 'none'
-      // }
+      ':hover': {
+        backgroundColor: 'yellow'
+      },
+      '@media (max-width: 1000px)': {
+        display: 'none'
+      }
     },
     cards: []
   };
@@ -77,4 +77,4 @@ CardList.propTypes = {
   cards: PropTypes.array
 };
 
-export default connect(mapPropsToState)(CardList)
+export default connect(mapPropsToState)(Radium(CardList))
