@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Card from "../../components/Card/Card";
 import Radium from "radium";
 import {connect} from "react-redux";
+import {selectCard} from '../../actions/index';
+import {bindActionCreators} from 'redux';
 
 class CardList extends Component {
 
@@ -41,7 +43,7 @@ class CardList extends Component {
                   onRef={ref => (this.state.cards.push(ref))}
                   title={card.title}
                   subtitle={card.subtitle}
-                  click={(e) => this.handleChildClick(e, card.id)}>
+                  click={(e) => this.props.selectCard(card)}>
               <div className="card-content">
                 <p>Random content</p>
               </div>
@@ -55,6 +57,7 @@ class CardList extends Component {
         );
 
     return cardComponent;
+
   }
 
   handleChildVisibility = (event, id) => {
@@ -67,14 +70,22 @@ class CardList extends Component {
 
 }
 
+
+CardList.propTypes = {
+  cards: PropTypes.array
+};
+
 function mapPropsToState(state) {
   return {
     cards: state.cards
   }
 }
 
-CardList.propTypes = {
-  cards: PropTypes.array
-};
+// When selecting a card, the selection should be passed to all of the reducers
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({selectCard: selectCard}, dispatch)
+}
 
-export default connect(mapPropsToState)(Radium(CardList))
+// Create a react-redux container from the current component. For this, it has to pass on the state from the reducers and also
+// dispatch events to the reducers.
+export default connect(mapPropsToState, mapDispatchToProps)(Radium(CardList))
