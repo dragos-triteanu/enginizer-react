@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
 import Radium from "radium";
 
 class CardDetails extends Component {
@@ -35,12 +34,6 @@ class CardDetails extends Component {
 
 CardDetails.propTypes = {};
 
-function mapStateToProps(state) {
-  return {
-    card: state.card
-  }
-}
-
-export default connect(mapStateToProps)(Radium(CardDetails));
+export default Radium(CardDetails);
 
 

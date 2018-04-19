@@ -4,7 +4,7 @@ import {combineReducers} from "redux";
 
 const rootReducer = combineReducers({
   cards: CardReducer,
-  card: SelectCardReducer
+  selectedCard: SelectCardReducer
 });
 
 export default rootReducer;

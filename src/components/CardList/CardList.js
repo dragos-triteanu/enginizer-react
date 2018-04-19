@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Card from "../../components/Card/Card";
+import Card from "../Card/Card";
 import Radium from "radium";
-import {connect} from "react-redux";
-import {selectCard} from '../../actions/index';
-import {bindActionCreators} from 'redux';
+import CardDetails from "../CardDetails/CardDetails";
 
 class CardList extends Component {
 
@@ -26,12 +24,14 @@ class CardList extends Component {
 
   render() {
     return (
-        <div className="CardList" style={this.state.style}>
-          {
-            this.props.cards.map((card, index) => {
-              return this.createCard(card, index);
-            })
-          }
+        <div className="CardPage">
+          <div className="CardList" style={this.state.style}>
+            {
+              this.props.cards.map((card, index) => {
+                return this.createCard(card, index);
+              })
+            }
+          </div>
         </div>
     );
   }
@@ -43,7 +43,7 @@ class CardList extends Component {
                   onRef={ref => (this.state.cards.push(ref))}
                   title={card.title}
                   subtitle={card.subtitle}
-                  click={(e) => this.props.selectCard(card)}>
+                  click={(e) => this.props.cardClick(card)}>
               <div className="card-content">
                 <p>Random content</p>
               </div>
@@ -70,22 +70,11 @@ class CardList extends Component {
 
 }
 
-
 CardList.propTypes = {
-  cards: PropTypes.array
+  cards: PropTypes.array,
+  cardClick: PropTypes.func
 };
-
-function mapPropsToState(state) {
-  return {
-    cards: state.cards
-  }
-}
-
-// When selecting a card, the selection should be passed to all of the reducers
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({selectCard: selectCard}, dispatch)
-}
 
 // Create a react-redux container from the current component. For this, it has to pass on the state from the reducers and also
 // dispatch events to the reducers.
-export default connect(mapPropsToState, mapDispatchToProps)(Radium(CardList))
+export default Radium(CardList)
